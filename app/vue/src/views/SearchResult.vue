@@ -6,28 +6,43 @@ import SearchForm from "@/components/SearchForm.vue";
 import BackToTop from "@/components/BackToTop.vue";
 import { useRouter } from "vue-router";
 import { useRoute } from 'vue-router'
+import type {abstLabelPair} from '@/type'
 
 const router = useRouter();
 const route = useRoute()
 
+// 検索フォームに入力された文字列を取得する
 const inputText = ref(route.query.queryText as string);
 
-// console.log(inputText)
+/**
+ * @description 論文のデータ構造
+ */
 interface Paper {
     title: string;
     abst: string;
+    abst_ssc: abstLabelPair[];
     author: string;
     publisher: string;
     year: string;
     listShowAbst: string;
     isShowFullAbst: boolean;
 }
+
 const paperListInit: Paper[] = [] 
 const paperList = ref(paperListInit);
 const isLoading = ref(true);
-function resolve() {
-    console.log("Delayed for 3 second.");
-}
+const isHighlightLabel = ref(true);
+
+getPaperList();
+
+watch(route, () => {
+    inputText.value = route.query.queryText as string;
+    getPaperList();
+})
+
+
+
+
 /**
  * @description 論文検索結果を取得する
  */
@@ -45,30 +60,29 @@ async function getPaperList() {
 
         for (let i = 0; i < paperList.value.length; ++i) {
             // console.log(paperList.value[i].abst)
-            if (paperList.value[i].abst.length >= 200){
-                paperList.value[i].listShowAbst = paperList.value[i].abst.substr(0,200) + " ..."
+            if (paperList.value[i].abst.length >= 200) {
+                paperList.value[i].listShowAbst = paperList.value[i].abst.substr(0, 200) + " ..."
                 paperList.value[i].isShowFullAbst = false
             } else {
                 paperList.value[i].listShowAbst = paperList.value[i].abst;
                 paperList.value[i].isShowFullAbst = true
             }
-        }    
+        }
         // なんか計算してる風に1.5秒遅延させる
         // await new Promise(resolve => setTimeout(resolve, 1500))
         isLoading.value = false;
+
+        for (let i = 0; i < paperList.value.length; ++i) {
+            console.log(paperList.value[i]);
+        }
+
     } catch (error) {
         console.log(error);
         console.log(path)
     }
 }
-getPaperList();
-
-watch(route, () => {
-    inputText.value = route.query.queryText as string;
-    getPaperList();
-})
-
 // console.log(`asyncの外: ${paperList.value.length}`)
+
 
 const linkClick = ():void => {
     router.push('/paperDetail');   
@@ -89,11 +103,25 @@ const clickReadMore = (index: number):void => {
 const clickFold = (index: number):void => {
     paperList.value[index].isShowFullAbst = false
 };
+
+
 </script>
+
 
 <template>
     <Header />
     <SearchForm v-bind:inputText="inputText"/>
+    <div class="mt-3 mb-3">
+        <p>
+            アブストラクトの下線の色は，次のように観点に対応しています．
+        </p>
+        <span class="label bg">Background</span>, 
+        <span class="label obj">Objective</span>,
+        <span class="label method">Method</span>,
+        <span class="label res">Result</span>,
+        <span class="label other">Other</span>
+        <p>各論文の <span class="text-blue-500">Read more</span> をクリックすると，全文と観点別の下線を表示します．</p>
+    </div>
 
     <div v-if="isLoading" class="flex justify-center">
         <div class="animate-ping h-2 w-2 bg-blue-600 rounded-full"></div>
@@ -117,8 +145,15 @@ const clickFold = (index: number):void => {
                     <a @click.prevent.stop="clickReadMore(index)" class="text-blue-500 hover:underline" href="#">Read more</a>
                 </template>
                 <template v-else>
-                    <p class="mt-2 text-gray-600">{{ paper.abst }}</p>
-                    <p class="mt-3 text-gray-600">Author: {{ paper.author }}</p>
+                    <div>
+                        <template v-if="!isHighlightLabel">
+                            <p class="mt-2 text-gray-600">{{ paper.abst }}</p>
+                            <p class="mt-3 text-gray-600">Author: {{ paper.author }}</p>
+                        </template>
+                        <template v-else v-for="abstLabel in paper.abst_ssc" :key="abstLabel[0]">
+                            <span v-bind:class="abstLabel[1]" class="label">{{ abstLabel[0] }}</span>&nbsp;
+                        </template>
+                    </div>
                     <a @click.prevent.stop="clickFold(index)" class="text-blue-500 hover:underline" href="#">fold</a>
                 </template>
             </div>
@@ -135,4 +170,22 @@ const clickFold = (index: number):void => {
 </template>
 
 <style scoped>
+.label {
+    text-decoration:underline;
+}
+.bg {
+    text-decoration-color: blue;
+}
+.obj {
+    text-decoration-color: magenta;
+}
+.method {
+    text-decoration-color: green;
+    }
+.res {
+    text-decoration-color: orange;
+}
+.other {
+     text-decoration-color: darkgrey;
+}
 </style>
