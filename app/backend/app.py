@@ -8,7 +8,7 @@ from random import *
 
 from paperRecom import paperRecommendation_entire
 
-import json
+import json, datetime
 
 app = Flask(__name__)
 
@@ -35,21 +35,35 @@ def random():
 def searchPaper():
     # app.logger.debug(request.get_json())
     
+    # postで渡された検索クエリを受け取る
+    query = request.get_json()['query']
+
     debug = True
     if debug:
         # ダミーデータ
         with open('paperRecom/dammyPaperList.json') as f:
             response = json.load(f)
-    
+        
     else:
-        # postで渡された検索クエリを受け取る
-        query = request.get_json()['query']
         # 検索クエリで論文検索
         method = "tf-idf"
         response = paperRecommendation_entire.recom(method, query)
 
-    print(response[:10])
+    # ログを出力
+    if not debug:
+        logging(query, response)
+
+    # print(response[:10])
     return jsonify(response[:10])
+
+def logging(query, response, logDir='log/'):
+    logDict = {
+        'query': query,
+        'response': response
+    }
+    outputPath = logDir + datetime.datetime.now().strftime('%Y%m%d%H%M%S') + '.json'
+    with open(outputPath, 'w') as f:
+        json.dump(logDict, f, indent=4)
 
 # app.run(host, port)：hostとportを指定してflaskサーバを起動
 if __name__ == '__main__':
