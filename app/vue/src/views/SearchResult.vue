@@ -112,6 +112,7 @@ const clickFold = (index: number):void => {
     <Header />
     <SearchForm v-bind:inputText="inputText"/>
     <div class="mt-3 mb-3">
+        <p>各論文の <span class="text-blue-500">Read more</span> をクリックすると，全文と観点別の下線を表示します．</p>
         <p>
             アブストラクトの下線の色は，次のように観点に対応しています．
         </p>
@@ -120,7 +121,13 @@ const clickFold = (index: number):void => {
         <span class="label method">Method</span>,
         <span class="label res">Result</span>,
         <span class="label other">Other</span>
-        <p>各論文の <span class="text-blue-500">Read more</span> をクリックすると，全文と観点別の下線を表示します．</p>
+        <div>
+            <label class="relative inline-flex items-center cursor-pointer mt-2">
+                <input type="checkbox" v-model="isHighlightLabel" class="sr-only peer">
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">下線を表示</span>
+            </label>
+        </div>
     </div>
 
     <div v-if="isLoading" class="flex justify-center">
@@ -148,12 +155,13 @@ const clickFold = (index: number):void => {
                     <div>
                         <template v-if="!isHighlightLabel">
                             <p class="mt-2 text-gray-600">{{ paper.abst }}</p>
-                            <p class="mt-3 text-gray-600">Author: {{ paper.author }}</p>
+                            
                         </template>
                         <template v-else v-for="abstLabel in paper.abst_ssc" :key="abstLabel[0]">
                             <span v-bind:class="abstLabel[1]" class="label">{{ abstLabel[0] }}</span>&nbsp;
                         </template>
                     </div>
+                    <p class="mt-3 text-gray-600">Author: {{ paper.author }}</p>
                     <a @click.prevent.stop="clickFold(index)" class="text-blue-500 hover:underline" href="#">fold</a>
                 </template>
             </div>
