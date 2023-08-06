@@ -1,4 +1,9 @@
 <script setup lang="ts">
+/**
+ * 論文リストを表示する Component
+ * 
+ * @deprecated この Component は使用されていません
+ */
 import { ref } from 'vue';
 import axios from 'axios';
 

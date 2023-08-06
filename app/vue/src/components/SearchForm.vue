@@ -1,4 +1,11 @@
 <script setup lang="ts">
+/**
+ * 検索フォームの Component
+ * 
+ * Props: inputText - 検索フォームに表示する文字列
+ *
+ * Emits: None
+ */
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { defineProps } from "vue";
@@ -11,18 +18,18 @@ interface Props {
 const props = defineProps<Props>();
 
 const query = ref(props.inputText);
-const tmpStr = ref("aaaaa");
 const clickSearchBottun = (): void =>{
     console.log("clicked search");
-    router.push({path: '/searchResult', query:{queryText:query.value}});   
-    // router.push({path: '/searchResult'});   
+    router.push({path: '/searchResult', query:{queryText:query.value}});     
 };
+
+const placeholder = "The aim of this research is to build a model for recommending papers that can explain the reasons for the recommendation. We propose a method based on Abstract Classification and the Paper Embedding Transfomer model."; 
 </script>
 
 <template>
     <form class="w-full md:max-w-md flex gap-2 pb-3">
         <textarea 
-            placeholder="The aim of this research is to build a model for recommending papers that can explain the reasons for the recommendation. We propose a method based on Abstract Classification and the Paper Embedding Transfomer model." 
+            v-bind:placeholder="placeholder"
             class="w-full flex-1 bg-gray-50 text-gray-800 placeholder-gray-500 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
             v-model="query"
         ></textarea>

@@ -1,10 +1,12 @@
-<template>
-    <button v-if="isVisible" @click="scrollToTop" class="back-to-top bg-gray-600 hover:bg-gray-500 text-white rounded px-4 py-2">
-        ↑Page top
-    </button>
-</template>
 
 <script setup lang="ts">
+/**
+ * ページをスクロールすると、ページトップに戻るボタンを表示する Component
+ * 
+ * Props: None
+ *
+ * Emits: None
+ */
 import { ref, onMounted, onUnmounted } from 'vue';
 
 
@@ -32,6 +34,13 @@ onUnmounted(() => {
 });
 
 </script>
+
+<template>
+    <button v-if="isVisible" @click="scrollToTop"
+        class="back-to-top bg-gray-600 hover:bg-gray-500 text-white rounded px-4 py-2">
+        ↑Page top
+    </button>
+</template>
 
 <style>
 .back-to-top {
