@@ -1,0 +1,203 @@
+[
+        {
+            "title": "Attention Is All You Need",
+            "abst": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.",
+            "author": "Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin",
+            "publisher": "arXiv",
+            "year": "2017",
+            "abst_ssc": [
+                        [
+                            "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration.",
+                            "bg"
+                        ],
+                        [
+                            "The best performing models also connect the encoder and decoder through an attention mechanism.",
+                            "bg"
+                        ],
+                        [
+                            "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+                            "obj"
+                        ],
+                        [
+                            "Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train.",
+                            "method"
+                        ],
+                        [
+                            "Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU.",
+                            "res"
+                        ],
+                        [
+                            "On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature.",
+                            "res"
+                        ],
+                        [
+                            "We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.",
+                            "res"
+                        ]
+                    ]
+        },
+        {
+            "title": "Weighted Transformer Network for Machine Translation",
+            "abst": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5% (7.7% point absolute improvement), MultiNLI accuracy to 86.7% (4.6% absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).",
+            "author": "Karim Ahmed, Nitish Shirish Keskar, Richard Socher",
+            "publisher": "arXiv",
+            "year": "2017",
+            "abst_ssc": [
+                        [
+                            "State-of-the-art results on neural machine translation often use attentional sequence-to-sequence models with some form of convolution or recursion.",
+                            "bg"
+                        ],
+                        [
+                            "Vaswani et al.",
+                            "bg"
+                        ],
+                        [
+                            "(2017) propose a new architecture that avoids recurrence and convolution completely.",
+                            "obj"
+                        ],
+                        [
+                            "Instead, it uses only self-attention and feed-forward layers.",
+                            "method"
+                        ],
+                        [
+                            "While the proposed architecture achieves state-of-the-art results on several machine translation tasks, it requires a large number of parameters and training iterations to converge.",
+                            "method"
+                        ],
+                        [
+                            "We propose Weighted Transformer, a Transformer with modified attention layers, that not only outperforms the baseline network in BLEU score but also converges 15-40% faster.",
+                            "method"
+                        ],
+                        [
+                            "Specifically, we replace the multi-head attention by multiple self-attention branches that the model learns to combine during the training process.",
+                            "method"
+                        ],
+                        [
+                            "Our model improves the state-of-the-art performance by 0.5 BLEU points on the WMT 2014 English-to-German translation task and by 0.4 on the English-to-French translation task.",
+                            "res"
+                        ]
+                    ]
+        },
+        {
+            "title": "Weighted Transformer Network for Machine Translation",
+            "abst": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5% (7.7% point absolute improvement), MultiNLI accuracy to 86.7% (4.6% absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).",
+            "author": "Karim Ahmed, Nitish Shirish Keskar, Richard Socher",
+            "publisher": "arXiv",
+            "year": "2017",
+            "abst_ssc": [
+                        [
+                            "State-of-the-art results on neural machine translation often use attentional sequence-to-sequence models with some form of convolution or recursion.",
+                            "bg"
+                        ],
+                        [
+                            "Vaswani et al.",
+                            "bg"
+                        ],
+                        [
+                            "(2017) propose a new architecture that avoids recurrence and convolution completely.",
+                            "obj"
+                        ],
+                        [
+                            "Instead, it uses only self-attention and feed-forward layers.",
+                            "method"
+                        ],
+                        [
+                            "While the proposed architecture achieves state-of-the-art results on several machine translation tasks, it requires a large number of parameters and training iterations to converge.",
+                            "method"
+                        ],
+                        [
+                            "We propose Weighted Transformer, a Transformer with modified attention layers, that not only outperforms the baseline network in BLEU score but also converges 15-40% faster.",
+                            "method"
+                        ],
+                        [
+                            "Specifically, we replace the multi-head attention by multiple self-attention branches that the model learns to combine during the training process.",
+                            "method"
+                        ],
+                        [
+                            "Our model improves the state-of-the-art performance by 0.5 BLEU points on the WMT 2014 English-to-German translation task and by 0.4 on the English-to-French translation task.",
+                            "res"
+                        ]
+                    ]
+        },
+        {
+            "title": "Weighted Transformer Network for Machine Translation",
+            "abst": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5% (7.7% point absolute improvement), MultiNLI accuracy to 86.7% (4.6% absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).",
+            "author": "Karim Ahmed, Nitish Shirish Keskar, Richard Socher",
+            "publisher": "arXiv",
+            "year": "2017",
+            "abst_ssc": [
+                        [
+                            "State-of-the-art results on neural machine translation often use attentional sequence-to-sequence models with some form of convolution or recursion.",
+                            "bg"
+                        ],
+                        [
+                            "Vaswani et al.",
+                            "bg"
+                        ],
+                        [
+                            "(2017) propose a new architecture that avoids recurrence and convolution completely.",
+                            "obj"
+                        ],
+                        [
+                            "Instead, it uses only self-attention and feed-forward layers.",
+                            "method"
+                        ],
+                        [
+                            "While the proposed architecture achieves state-of-the-art results on several machine translation tasks, it requires a large number of parameters and training iterations to converge.",
+                            "method"
+                        ],
+                        [
+                            "We propose Weighted Transformer, a Transformer with modified attention layers, that not only outperforms the baseline network in BLEU score but also converges 15-40% faster.",
+                            "method"
+                        ],
+                        [
+                            "Specifically, we replace the multi-head attention by multiple self-attention branches that the model learns to combine during the training process.",
+                            "method"
+                        ],
+                        [
+                            "Our model improves the state-of-the-art performance by 0.5 BLEU points on the WMT 2014 English-to-German translation task and by 0.4 on the English-to-French translation task.",
+                            "res"
+                        ]
+                    ]
+        },
+        {
+            "title": "Weighted Transformer Network for Machine Translation",
+            "abst": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations from unlabeled text by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT model can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE score to 80.5% (7.7% point absolute improvement), MultiNLI accuracy to 86.7% (4.6% absolute improvement), SQuAD v1.1 question answering Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1 (5.1 point absolute improvement).",
+            "author": "Karim Ahmed, Nitish Shirish Keskar, Richard Socher",
+            "publisher": "arXiv",
+            "year": "2017",
+            "abst_ssc": [
+                        [
+                            "State-of-the-art results on neural machine translation often use attentional sequence-to-sequence models with some form of convolution or recursion.",
+                            "bg"
+                        ],
+                        [
+                            "Vaswani et al.",
+                            "bg"
+                        ],
+                        [
+                            "(2017) propose a new architecture that avoids recurrence and convolution completely.",
+                            "obj"
+                        ],
+                        [
+                            "Instead, it uses only self-attention and feed-forward layers.",
+                            "method"
+                        ],
+                        [
+                            "While the proposed architecture achieves state-of-the-art results on several machine translation tasks, it requires a large number of parameters and training iterations to converge.",
+                            "method"
+                        ],
+                        [
+                            "We propose Weighted Transformer, a Transformer with modified attention layers, that not only outperforms the baseline network in BLEU score but also converges 15-40% faster.",
+                            "method"
+                        ],
+                        [
+                            "Specifically, we replace the multi-head attention by multiple self-attention branches that the model learns to combine during the training process.",
+                            "method"
+                        ],
+                        [
+                            "Our model improves the state-of-the-art performance by 0.5 BLEU points on the WMT 2014 English-to-German translation task and by 0.4 on the English-to-French translation task.",
+                            "res"
+                        ]
+                    ]
+        }
+    ]

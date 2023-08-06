@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ref, watch, watchEffect} from "vue";
+import { onMounted, ref, watch, watchEffect} from "vue";
 import axios from 'axios';
-import Header from "../components/Header.vue";
-import SearchForm from "../components/SearchForm.vue";
+import Header from "@/components/Header.vue";
+import SearchForm from "@/components/SearchForm.vue";
+import BackToTop from "@/components/BackToTop.vue";
 import { useRouter } from "vue-router";
-import {useRoute} from 'vue-router'
+import { useRoute } from 'vue-router'
+
 
 const router = useRouter();
 const route = useRoute()
@@ -15,6 +17,9 @@ const inputText = ref(route.query.queryText as string);
 interface Paper {
     title: string;
     abst: string;
+    author: string;
+    publisher: string;
+    year: string;
     listShowAbst: string;
     isShowFullAbst: boolean;
 }
@@ -80,7 +85,6 @@ const clickFold = (index: number):void => {
 };
 
 
-
 </script>
 
 <template>
@@ -98,15 +102,15 @@ const clickFold = (index: number):void => {
         <div class="max-w-4xl px-10 py-6 bg-white rounded-lg shadow-md">
             <div class="flex justify-between items-center">
                 <!-- <span class="font-light text-gray-600">{{ data.date }}</span> -->
-                <span class="font-light text-gray-600">2022</span>
+                <span class="font-light text-gray-600">{{ paper.year }}</span>
                 <!-- <a class="px-2 py-1 bg-gray-600 text-gray-100 font-bold rounded hover:bg-gray-500" href="#">{{ data.tag }}</a> -->
-                <a class="px-2 py-1 bg-gray-600 text-gray-100 font-bold rounded hover:bg-gray-500" href="#">arXiv</a>
+                <p class="px-2 py-1 bg-gray-600 text-gray-100 font-bold rounded hover:bg-gray-500">{{ paper.publisher }}</p>
             </div>
             <div class="mt-2">
-                <!-- <a class="text-2xl text-gray-700 fo?nt-bold hover:underline" href="#">{{ data.title }}</a> -->
-                <a class="text-2xl text-gray-700 font-bold hover:underline" href="#" @click.prevent.stop="linkClick"
+                <!-- <a class="text-2xl text-gray-700 font-bold hover:underline" href="#" @click.prevent.stop="linkClick"
                     >{{ paper.title }}
-                </a>
+                </a> -->
+                <p class="text-2xl text-gray-700 font-bold" href="#">{{ paper.title }}</p>
                 <!-- <p class="mt-2 text-gray-600">{{ data.body }}</p> -->
                 <!-- <p class="mt-2 text-gray-600">
                     The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. ...
@@ -119,6 +123,8 @@ const clickFold = (index: number):void => {
                 <template v-else>
                     <p class="mt-2 text-gray-600">{{ paper.abst }}</p>
 
+                    <p class="mt-3 text-gray-600">Author: {{ paper.author }}</p>
+
                     <a @click.prevent.stop="clickFold(index)" class="text-blue-500 hover:underline" href="#">fold</a>
                 </template>
 
@@ -129,12 +135,13 @@ const clickFold = (index: number):void => {
                         <!-- <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" :src="data.image" alt="avatar"> -->
                         <!-- <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block" :src="data.image" alt="avatar"> -->
                         <!-- <h1 class="text-gray-700 font-bold hover:underline">{{ data.userName }}</h1> -->
-                        <h1 class="text-gray-700 text-2xl">Author</h1>
+                        <!-- <h1 class="text-gray-700 text-2xl">{{ paper.author }}</h1> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <BackToTop />
 
 
 </template>
