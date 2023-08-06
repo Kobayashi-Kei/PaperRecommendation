@@ -5,7 +5,7 @@
             "author": "Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin",
             "publisher": "arXiv",
             "year": "2017",
-            "abst_ssc": [
+            "abstSsc": [
                         [
                             "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration.",
                             "bg"
@@ -34,7 +34,15 @@
                             "We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.",
                             "res"
                         ]
-                    ]
+                    ],
+            "scoreOfSimilarity": 0.8,
+            "labelScoreOfSimilarity": {
+                "bg": 0.8,
+                "obj": 0.8,
+                "method": 0.8,
+                "res": 0.8,
+                "other": 0.8
+            }
         },
         {
             "title": "Weighted Transformer Network for Machine Translation",
@@ -42,7 +50,7 @@
             "author": "Karim Ahmed, Nitish Shirish Keskar, Richard Socher",
             "publisher": "arXiv",
             "year": "2017",
-            "abst_ssc": [
+            "abstSsc": [
                         [
                             "State-of-the-art results on neural machine translation often use attentional sequence-to-sequence models with some form of convolution or recursion.",
                             "bg"
@@ -75,7 +83,15 @@
                             "Our model improves the state-of-the-art performance by 0.5 BLEU points on the WMT 2014 English-to-German translation task and by 0.4 on the English-to-French translation task.",
                             "res"
                         ]
-                    ]
+                    ],
+            "scoreOfSimilarity": 0.8,
+            "labelScoreOfSimilarity": {
+                "bg": 0.8,
+                "obj": 0.8,
+                "method": 0.8,
+                "res": 0.8,
+                "other": 0.8
+            }
         },
         {
             "title": "Weighted Transformer Network for Machine Translation",
@@ -83,7 +99,7 @@
             "author": "Karim Ahmed, Nitish Shirish Keskar, Richard Socher",
             "publisher": "arXiv",
             "year": "2017",
-            "abst_ssc": [
+            "abstSsc": [
                         [
                             "State-of-the-art results on neural machine translation often use attentional sequence-to-sequence models with some form of convolution or recursion.",
                             "bg"
@@ -116,7 +132,15 @@
                             "Our model improves the state-of-the-art performance by 0.5 BLEU points on the WMT 2014 English-to-German translation task and by 0.4 on the English-to-French translation task.",
                             "res"
                         ]
-                    ]
+                    ],
+            "scoreOfSimilarity": 0.8,
+            "labelScoreOfSimilarity": {
+                "bg": 0.8,
+                "obj": 0.8,
+                "method": 0.8,
+                "res": 0.8,
+                "other": 0.8
+            }
         },
         {
             "title": "Weighted Transformer Network for Machine Translation",
@@ -124,7 +148,7 @@
             "author": "Karim Ahmed, Nitish Shirish Keskar, Richard Socher",
             "publisher": "arXiv",
             "year": "2017",
-            "abst_ssc": [
+            "abstSsc": [
                         [
                             "State-of-the-art results on neural machine translation often use attentional sequence-to-sequence models with some form of convolution or recursion.",
                             "bg"
@@ -157,7 +181,15 @@
                             "Our model improves the state-of-the-art performance by 0.5 BLEU points on the WMT 2014 English-to-German translation task and by 0.4 on the English-to-French translation task.",
                             "res"
                         ]
-                    ]
+                    ],
+            "scoreOfSimilarity": 0.8,
+            "labelScoreOfSimilarity": {
+                "bg": 0.8,
+                "obj": 0.8,
+                "method": 0.8,
+                "res": 0.8,
+                "other": 0.8
+            }
         },
         {
             "title": "Weighted Transformer Network for Machine Translation",
@@ -165,7 +197,7 @@
             "author": "Karim Ahmed, Nitish Shirish Keskar, Richard Socher",
             "publisher": "arXiv",
             "year": "2017",
-            "abst_ssc": [
+            "abstSsc": [
                         [
                             "State-of-the-art results on neural machine translation often use attentional sequence-to-sequence models with some form of convolution or recursion.",
                             "bg"
@@ -198,6 +230,14 @@
                             "Our model improves the state-of-the-art performance by 0.5 BLEU points on the WMT 2014 English-to-German translation task and by 0.4 on the English-to-French translation task.",
                             "res"
                         ]
-                    ]
+                    ],
+            "scoreOfSimilarity": 0.8,
+            "labelScoreOfSimilarity": {
+                "bg": 0.8,
+                "obj": 0.8,
+                "method": 0.8,
+                "res": 0.8,
+                "other": 0.8
+            }
         }
     ]

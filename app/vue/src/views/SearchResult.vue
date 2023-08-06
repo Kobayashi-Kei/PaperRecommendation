@@ -6,7 +6,7 @@ import SearchForm from "@/components/SearchForm.vue";
 import BackToTop from "@/components/BackToTop.vue";
 import { useRouter } from "vue-router";
 import { useRoute } from 'vue-router'
-import type {abstLabelPair} from '@/type'
+import type {abstLabelPair, labelScoreOfSimilarity} from '@/type'
 
 const router = useRouter();
 const route = useRoute()
@@ -20,12 +20,14 @@ const inputText = ref(route.query.queryText as string);
 interface Paper {
     title: string;
     abst: string;
-    abst_ssc: abstLabelPair[];
+    abstSsc: abstLabelPair[];
     author: string;
     publisher: string;
     year: string;
     listShowAbst: string;
     isShowFullAbst: boolean;
+    scoreOfSimilarity: number|null;
+    labelScoreOfSimilarity: labelScoreOfSimilarity|null;
 }
 
 const paperListInit: Paper[] = [] 
@@ -39,9 +41,6 @@ watch(route, () => {
     inputText.value = route.query.queryText as string;
     getPaperList();
 })
-
-
-
 
 /**
  * @description 論文検索結果を取得する
@@ -83,10 +82,9 @@ async function getPaperList() {
 }
 // console.log(`asyncの外: ${paperList.value.length}`)
 
-
-const linkClick = ():void => {
-    router.push('/paperDetail');   
-};
+// const linkClick = ():void => {
+//     router.push('/paperDetail');   
+// };
 
 /**
  * @description 論文の概要を全文表示する
@@ -104,11 +102,9 @@ const clickFold = (index: number):void => {
     paperList.value[index].isShowFullAbst = false
 };
 
-const data = ref({
-    message: "こんにちは、Vue 3!",
-    numbers: [1, 2, 3, 4, 5]
-});
-
+/**
+ * @description 検索結果をJSON形式でダウンロードする
+ */
 const downloadJSON = () => {
     const blob = new Blob([JSON.stringify(paperList.value, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -176,9 +172,8 @@ const downloadJSON = () => {
                     <div>
                         <template v-if="!isHighlightLabel">
                             <p class="mt-2 text-gray-600">{{ paper.abst }}</p>
-                            
                         </template>
-                        <template v-else v-for="abstLabel in paper.abst_ssc" :key="abstLabel[0]">
+                        <template v-else v-for="abstLabel in paper.abstSsc" :key="abstLabel[0]">
                             <span v-bind:class="abstLabel[1]" class="label">{{ abstLabel[0] }}</span>&nbsp;
                         </template>
                     </div>
@@ -188,8 +183,13 @@ const downloadJSON = () => {
             </div>
             <div class="flex justify-between items-center mt-4">
                 <div>
-                    <div class="flex items-center" href="#">
-                        <!-- <h1 class="text-gray-700 text-2xl">{{ paper.author }}</h1> -->
+                    <div class="items-center text-gray-700">
+                        <div v-if="paper.scoreOfSimilarity !== null">Similarity: {{ paper.scoreOfSimilarity }}</div>
+                        <div v-if="paper.labelScoreOfSimilarity !== null">
+                            <template v-for="(score, label) in paper.labelScoreOfSimilarity" :key="label" >
+                                <span class="label" v-bind:class="label">{{ label }}: {{ score }}</span> &nbsp; 
+                            </template>
+                        </div>
                     </div>
                 </div>
             </div>
