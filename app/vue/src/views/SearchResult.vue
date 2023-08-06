@@ -104,6 +104,21 @@ const clickFold = (index: number):void => {
     paperList.value[index].isShowFullAbst = false
 };
 
+const data = ref({
+    message: "こんにちは、Vue 3!",
+    numbers: [1, 2, 3, 4, 5]
+});
+
+const downloadJSON = () => {
+    const blob = new Blob([JSON.stringify(paperList.value, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'paper_list.json';
+    a.click();
+    a.remove();
+};
 
 </script>
 
@@ -112,7 +127,13 @@ const clickFold = (index: number):void => {
     <Header />
     <SearchForm v-bind:inputText="inputText"/>
     <div class="mt-3 mb-3">
-        <p>各論文の <span class="text-blue-500">Read more</span> をクリックすると，全文と観点別の下線を表示します．</p>
+        <p>各論文の <span class="text-blue-500">Read more</span> をクリックすると，全文と観点別の下線を表示します．&nbsp;
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" v-model="isHighlightLabel" class="sr-only peer">
+                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">下線を表示</span>
+                </label>
+        </p>
         <p>
             アブストラクトの下線の色は，次のように観点に対応しています．
         </p>
@@ -121,13 +142,13 @@ const clickFold = (index: number):void => {
         <span class="label method">Method</span>,
         <span class="label res">Result</span>,
         <span class="label other">Other</span>
-        <div>
-            <label class="relative inline-flex items-center cursor-pointer mt-2">
-                <input type="checkbox" v-model="isHighlightLabel" class="sr-only peer">
-                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">下線を表示</span>
-            </label>
-        </div>
+    </div>
+
+    <div class="mt-2 mb-2">
+        <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" v-on:click="downloadJSON">
+        <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
+        <span>検索結果の出力</span>
+        </button>
     </div>
 
     <div v-if="isLoading" class="flex justify-center">
