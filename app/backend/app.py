@@ -13,6 +13,7 @@ import json, datetime
 app = Flask(__name__)
 
 app.config.from_object(__name__)
+app.json.sort_keys = False
 
 CORS(app)
 
