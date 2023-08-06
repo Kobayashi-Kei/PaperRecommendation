@@ -7,7 +7,6 @@ import SearchForm from "../components/SearchForm.vue"
 </script>
 
 <template>
-    <Header />
     <section class="flex flex-col lg:flex-row justify-between gap-6 sm:gap-10 md:gap-16">
       <!-- content - start -->
       <div class="xl:w-5/12 flex flex-col justify-center items-center lg:items-start sm:text-center lg:text-left lg:py-12 xl:py-24">

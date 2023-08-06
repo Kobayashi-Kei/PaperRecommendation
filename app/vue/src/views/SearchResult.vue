@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref, watch, watchEffect} from "vue";
 import axios from 'axios';
-import Header from "@/components/Header.vue";
 import SearchForm from "@/components/SearchForm.vue";
 import BackToTop from "@/components/BackToTop.vue";
 import { useRouter } from "vue-router";
@@ -120,7 +119,6 @@ const downloadJSON = () => {
 
 
 <template>
-    <Header />
     <SearchForm v-bind:inputText="inputText"/>
     <div class="mt-3 mb-3">
         <p>各論文の <span class="text-blue-500">Read more</span> をクリックすると，全文と観点別の下線を表示します．&nbsp;

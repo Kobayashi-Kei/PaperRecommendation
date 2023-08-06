@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import Header from "@/components/Header.vue";
 import './index.css'
 
 </script>
 
 <template>
-  <header>
-  </header>
-  <!-- tailwindCSSの動作確認 -->
-  <!-- <div class="text-5xl text-bold">tailwind css</div>
-  <button class="bg-indigo-800 font-semibold text-white py-2 px-3 rounded">ボタン</button> -->
+  
   <div class="bg-white pb-6 sm:pb-8 lg:pb-12">
     <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
+      <Header />
       <RouterView />
     </div>
 </div>
