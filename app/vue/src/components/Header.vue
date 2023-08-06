@@ -3,11 +3,11 @@
 </script>
 
 <template>
-<header class="flex justify-between items-center py-4 md:py-8 mb-8 md:mb-12 xl:mb-16">
+<!-- <header class="flex justify-between items-center py-4 md:py-8 mb-8 md:mb-12 xl:mb-16"> -->
+<header class="flex justify-between items-center py-4 md:py-8 ">
       <!-- logo - start -->
       <a href="/" class="inline-flex items-center text-black-800 text-2xl md:text-3xl font-bold gap-2.5" aria-label="logo">
         <img width="95" height="94" viewBox="0 0 95 94" class="w-6 h-auto text-indigo-500" fill="currentColor" src="../assets/document.svg">
-
         Paper Recommendation
       </a>
       <!-- logo - end -->

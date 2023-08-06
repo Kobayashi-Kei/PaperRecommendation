@@ -27,10 +27,11 @@ const placeholder = "The aim of this research is to build a model for recommendi
 </script>
 
 <template>
-    <form class="w-full md:max-w-md flex gap-2 pb-3">
+    <form class="w-full md:max-w-2xl flex gap-2 pb-3">
         <textarea 
-            v-bind:placeholder="placeholder"
+            rows="6"
             class="w-full flex-1 bg-gray-50 text-gray-800 placeholder-gray-500 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
+            v-bind:placeholder="placeholder"
             v-model="query"
         ></textarea>
     </form>
