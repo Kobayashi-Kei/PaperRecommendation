@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import {useRouter} from "vue-router";
+import { useRouter } from "vue-router";
 
 const router = useRouter();
-
 
 const activeLink = ref("Home");
 const isOpenedMenu = ref(false);
@@ -17,6 +16,14 @@ const onClickLink = (name: string): void => {
 const onClickMenu = (): void => {
   isOpenedMenu.value = !isOpenedMenu.value;
 };
+
+const url_name = location.href.split("/").pop();
+// console.log(url_name);
+if (url_name == "abstClassification") {
+  activeLink.value = "AbstClassification";
+} else {
+  activeLink.value = "Home";
+}
 
 </script>
 
@@ -33,7 +40,7 @@ const onClickMenu = (): void => {
       <!-- nav - start -->
       <nav class="hidden gap-12 lg:flex">
           <a href="#" v-on:click.prevent.stop="onClickLink('Home')" v-bind:class="[activeLink == 'Home' ? 'text-indigo-500' : 'text-gray-600']" class="link">Paper Recommendation</a>
-          <a href="#" v-on:click.prevent.stop="onClickLink('AbstClassification')" v-bind:class="[activeLink == 'Profile' ? 'text-indigo-500' : 'text-gray-600']" class="link">Abstract Classification</a>
+          <a href="#" v-on:click.prevent.stop="onClickLink('AbstClassification')" v-bind:class="[activeLink == 'AbstClassification' ? 'text-indigo-500' : 'text-gray-600']" class="link">Abstract Classification</a>
       </nav>
       <!-- nav - end -->
 
