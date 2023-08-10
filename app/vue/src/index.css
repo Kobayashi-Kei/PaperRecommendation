@@ -2,3 +2,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/**
+    The following is label styles for the abstract.
+*/
+.label {
+    text-decoration: underline;
+}
+
+.bg {
+    text-decoration-color: blue;
+}
+
+.obj {
+    text-decoration-color: magenta;
+}
+
+.method {
+    text-decoration-color: green;
+}
+
+.res {
+    text-decoration-color: orange;
+}
+
+.other {
+    text-decoration-color: darkgrey;
+}

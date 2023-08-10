@@ -5,7 +5,7 @@
             "author": "Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz Kaiser, Illia Polosukhin",
             "publisher": "arXiv",
             "year": "2017",
-            "abstSsc": [
+            "labeledAbst": [
                         [
                             "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration.",
                             "bg"
@@ -50,7 +50,7 @@
             "author": "Karim Ahmed, Nitish Shirish Keskar, Richard Socher",
             "publisher": "arXiv",
             "year": "2017",
-            "abstSsc": [
+            "labeledAbst": [
                         [
                             "State-of-the-art results on neural machine translation often use attentional sequence-to-sequence models with some form of convolution or recursion.",
                             "bg"
@@ -99,7 +99,7 @@
             "author": "Karim Ahmed, Nitish Shirish Keskar, Richard Socher",
             "publisher": "arXiv",
             "year": "2017",
-            "abstSsc": [
+            "labeledAbst": [
                         [
                             "State-of-the-art results on neural machine translation often use attentional sequence-to-sequence models with some form of convolution or recursion.",
                             "bg"
@@ -148,7 +148,7 @@
             "author": "Karim Ahmed, Nitish Shirish Keskar, Richard Socher",
             "publisher": "arXiv",
             "year": "2017",
-            "abstSsc": [
+            "labeledAbst": [
                         [
                             "State-of-the-art results on neural machine translation often use attentional sequence-to-sequence models with some form of convolution or recursion.",
                             "bg"
@@ -197,7 +197,7 @@
             "author": "Karim Ahmed, Nitish Shirish Keskar, Richard Socher",
             "publisher": "arXiv",
             "year": "2017",
-            "abstSsc": [
+            "labeledAbst": [
                         [
                             "State-of-the-art results on neural machine translation often use attentional sequence-to-sequence models with some form of convolution or recursion.",
                             "bg"

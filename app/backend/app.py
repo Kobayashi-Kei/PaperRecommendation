@@ -16,6 +16,7 @@ app.config.from_object(__name__)
 app.json.sort_keys = False
 
 CORS(app)
+debug = True
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
@@ -32,14 +33,12 @@ def random():
     return jsonify(response)
 
 @app.route('/search', methods=['POST'])
-# @app.route('/search', methods=['POST'])
 def searchPaper():
     # app.logger.debug(request.get_json())
     
     # postで渡された検索クエリを受け取る
     query = request.get_json()['query']
 
-    debug = True
     if debug:
         # ダミーデータ
         with open('paperRecom/dammyPaperList.json') as f:
@@ -56,6 +55,22 @@ def searchPaper():
 
     # print(response[:10])
     return jsonify(response[:10])
+
+@app.route('/classify', methods=['POST'])
+def classifyAbstract():
+    # app.logger.debug(request.get_json())
+    
+    abst = request.get_json()['abst']
+
+    if debug:
+        # ダミーデータ
+        with open('paperRecom/dammyLabeledAbst.json') as f:
+            labeledAbst = json.load(f)
+        
+    else:
+        labeledAbst = request.get_json()['labeledData']
+    
+    return jsonify(labeledAbst)
 
 def logging(query, response, logDir='log/'):
     logDict = {

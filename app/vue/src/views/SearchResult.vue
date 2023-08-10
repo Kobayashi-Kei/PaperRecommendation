@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { onMounted, ref, watch, watchEffect} from "vue";
+import { onMounted, ref, watch, watchEffect } from "vue";
+import { useRouter } from "vue-router";
+import { useRoute } from 'vue-router'
+import type { abstLabelPair, labelScoreOfSimilarity } from '@/type'
 import axios from 'axios';
 import SearchForm from "@/components/SearchForm.vue";
 import BackToTop from "@/components/BackToTop.vue";
-import { useRouter } from "vue-router";
-import { useRoute } from 'vue-router'
-import type {abstLabelPair, labelScoreOfSimilarity} from '@/type'
+import Loading from "@/components/Loading.vue";
+import LabeledAbst from "@/components/LabeledAbst.vue";
+import ExplainLabel from "@/components/ExplainLabel.vue";
 
-const router = useRouter();
 const route = useRoute()
 
 // 検索フォームに入力された文字列を取得する
@@ -19,7 +21,7 @@ const inputText = ref(route.query.queryText as string);
 interface Paper {
     title: string;
     abst: string;
-    abstSsc: abstLabelPair[];
+    labeledAbst: abstLabelPair[];
     author: string;
     publisher: string;
     year: string;
@@ -52,8 +54,8 @@ async function getPaperList() {
         query: inputText.value
     };
     try {
-        const res = await axios.post(path, params);
-        paperList.value = res.data;
+        const responce = await axios.post(path, params);
+        paperList.value = responce.data;
         // TODO: Piniaデータストアに格納
 
         for (let i = 0; i < paperList.value.length; ++i) {
@@ -66,13 +68,14 @@ async function getPaperList() {
                 paperList.value[i].isShowFullAbst = true
             }
         }
-        // なんか計算してる風に1.5秒遅延させる
-        // await new Promise(resolve => setTimeout(resolve, 1500))
+        // なんか計算してる風に1秒遅延させる
+        // await new Promise(resolve => setTimeout(resolve, 1000))
         isLoading.value = false;
 
         for (let i = 0; i < paperList.value.length; ++i) {
             console.log(paperList.value[i]);
         }
+        console.log(paperList.value[0].labeledAbst);
 
     } catch (error) {
         console.log(error);
@@ -128,14 +131,7 @@ const downloadJSON = () => {
                     <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">下線を表示</span>
                 </label>
         </p>
-        <p>
-            アブストラクトの下線の色は，次のように観点に対応しています．
-        </p>
-        <span class="label bg">Background</span>, 
-        <span class="label obj">Objective</span>,
-        <span class="label method">Method</span>,
-        <span class="label res">Result</span>,
-        <span class="label other">Other</span>
+        <ExplainLabel />
     </div>
 
     <div class="mt-2 mb-2">
@@ -146,11 +142,9 @@ const downloadJSON = () => {
     </div>
 
     <div v-if="isLoading" class="flex justify-center">
-        <div class="animate-ping h-2 w-2 bg-blue-600 rounded-full"></div>
-        <div class="animate-ping h-2 w-2 bg-blue-600 rounded-full mx-4"></div>
-        <div class="animate-ping h-2 w-2 bg-blue-600 rounded-full"></div>
+        <Loading />
     </div>
-    <div v-else v-for="paper, index in paperList" class="pb-4">
+    <div v-if="!isLoading" v-for="paper, index in paperList" class="pb-4">
         <div class="max-w-4xl px-10 py-6 bg-white rounded-lg shadow-md">
             <div class="flex justify-between items-center">
                 <span class="font-light text-gray-600">{{ paper.year }}</span>
@@ -171,8 +165,8 @@ const downloadJSON = () => {
                         <template v-if="!isHighlightLabel">
                             <p class="mt-2 text-gray-600">{{ paper.abst }}</p>
                         </template>
-                        <template v-else v-for="abstLabel in paper.abstSsc" :key="abstLabel[0]">
-                            <span v-bind:class="abstLabel[1]" class="label">{{ abstLabel[0] }}</span>&nbsp;
+                        <template v-else >
+                            <LabeledAbst v-bind:labeledAbst="paper.labeledAbst"/>
                         </template>
                     </div>
                     <p class="mt-3 text-gray-600">Author: {{ paper.author }}</p>
@@ -195,24 +189,3 @@ const downloadJSON = () => {
     </div>
     <BackToTop />
 </template>
-
-<style scoped>
-.label {
-    text-decoration:underline;
-}
-.bg {
-    text-decoration-color: blue;
-}
-.obj {
-    text-decoration-color: magenta;
-}
-.method {
-    text-decoration-color: green;
-    }
-.res {
-    text-decoration-color: orange;
-}
-.other {
-     text-decoration-color: darkgrey;
-}
-</style>
