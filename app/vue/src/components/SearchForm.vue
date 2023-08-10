@@ -23,7 +23,7 @@ const clickSearchBottun = (): void =>{
     router.push({path: '/searchResult', query:{queryText:query.value}});     
 };
 
-const placeholder = "The aim of this research is to build a model for recommending papers that can explain the reasons for the recommendation. We propose a method based on Abstract Classification and the Paper Embedding Transfomer model."; 
+const placeholder = "ex. The aim of this research is to build a model for recommending papers that can explain the reasons for the recommendation. We propose a method based on Abstract Classification and the Paper Embedding Transfomer model."; 
 </script>
 
 <template>
