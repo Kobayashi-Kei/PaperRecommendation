@@ -42,19 +42,27 @@ def searchPaper():
     if debug:
         # ダミーデータ
         with open('paperRecom/dammyPaperList.json') as f:
-            response = json.load(f)
+            paperList = json.load(f)
+        with open('paperRecom/dammyLabeledAbst.json') as f:
+            labeledAbst = json.load(f)
         
     else:
         # 検索クエリで論文検索
         method = "tf-idf"
-        response = paperRecommendation_entire.recom(method, query)
+        paperList = paperRecommendation_entire.recom(method, query)
+        # labeledAbst = paperRecommendation_entire.labeling(method, query, paperList)
+    
+    response = {
+        "paperList": paperList[:10],
+        "labeledAbst": labeledAbst
+    }
 
     # ログを出力
     if not debug:
-        logging(query, response)
+        logging(query, paperList)
 
     # print(response[:10])
-    return jsonify(response[:10])
+    return jsonify(response)
 
 @app.route('/classify', methods=['POST'])
 def classifyAbstract():

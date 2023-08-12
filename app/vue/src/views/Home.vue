@@ -12,7 +12,9 @@ import SearchForm from "../components/SearchForm.vue"
         <h1 class="text-black-800 text-4xl sm:text-5xl md:text-6xl font-bold mb-8 md:mb-12">Paper Recommendation System </h1>
 
         <p class="lg:w-4/5 text-gray-500 xl:text-lg leading-relaxed mb-8 md:mb-12">研究のアプローチや要旨を入力してください。関連する論文を推薦します。</p>
-        <SearchForm v-bind:input-text="''"/>
+        <div class="w-full">
+          <SearchForm v-bind:input-text="''"/>
+        </div>
       </div>
       <!-- content - end -->
 

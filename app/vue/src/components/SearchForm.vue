@@ -27,16 +27,19 @@ const placeholder = "ex. The aim of this research is to build a model for recomm
 </script>
 
 <template>
-    <form class="w-full md:max-w-2xl flex gap-2 pb-3">
+    <!-- Textarea -->
+    <form class="">
         <textarea 
             rows="6"
-            class="w-full flex-1 bg-gray-50 text-gray-800 placeholder-gray-500 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2"
+            class="w-full bg-gray-50 text-gray-800 placeholder-gray-500 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-0 py-2"
             v-bind:placeholder="placeholder"
             v-model="query"
         ></textarea>
     </form>
+
+    <!-- Search Button -->
     <button 
-        class="inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-8 py-2 pt"
+        class="bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded outline-none transition duration-100 px-8 py-2"
         v-on:click="clickSearchBottun"
     >
     Search

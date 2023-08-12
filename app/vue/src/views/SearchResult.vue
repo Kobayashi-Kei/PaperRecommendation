@@ -35,6 +35,7 @@ const paperListInit: Paper[] = []
 const paperList = ref(paperListInit);
 const isLoading = ref(true);
 const isHighlightLabel = ref(true);
+const labeledAbst = ref([] as abstLabelPair[]);
 
 getPaperList();
 
@@ -55,7 +56,9 @@ async function getPaperList() {
     };
     try {
         const responce = await axios.post(path, params);
-        paperList.value = responce.data;
+        console.log(responce.data);
+        paperList.value = responce.data.paperList;
+        labeledAbst.value = responce.data.labeledAbst;
         // TODO: Piniaデータストアに格納
 
         for (let i = 0; i < paperList.value.length; ++i) {
@@ -122,7 +125,18 @@ const downloadJSON = () => {
 
 
 <template>
-    <SearchForm v-bind:inputText="inputText"/>
+    
+    <div class="flex gap-2">
+        <!-- Left Section: Search form-->
+        <div class="flex-1 flex flex-col gap-2 w-1/2">
+            <SearchForm v-bind:inputText="inputText"/>
+        </div>
+        <!-- Right Section: Output -->
+        <div class="flex-1 w-1/2 bg-gray-50 border rounded p-3">
+            <LabeledAbst v-bind:labeledAbst="labeledAbst"/>
+        </div>
+    </div>
+
     <div class="mt-3 mb-3">
         <p>各論文の <span class="text-blue-500">Read more</span> をクリックすると，アブストラクト全文と観点別の下線を表示します．&nbsp;
                 <label class="relative inline-flex items-center cursor-pointer">
