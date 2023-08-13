@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import SearchForm from "../components/SearchForm.vue"
-
-
+import SearchForm from "@/components/SearchForm.vue";
 
 </script>
 
@@ -17,16 +15,11 @@ import SearchForm from "../components/SearchForm.vue"
         </div>
       </div>
       <!-- content - end -->
-
+      
       <!-- image - start -->
       <div class="xl:w-5/12 h-48 lg:h-auto bg-gray-100 overflow-hidden shadow-lg rounded-lg">
         <img src="https://images.unsplash.com/photo-1620206343767-7da98185edd4?auto=format&q=75&fit=crop&w=1000" loading="lazy" alt="Photo by Fakurian Design" class="w-full h-full object-cover object-center" />
       </div>
       <!-- image - end -->
     </section>
-
-
 </template>
-
-<style scoped>
-</style>

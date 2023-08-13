@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch, watchEffect } from "vue";
-import { useRouter } from "vue-router";
+import { ref, watch } from "vue";
 import { useRoute } from 'vue-router'
 import type { abstLabelPair, labelScoreOfSimilarity } from '@/type'
 import axios from 'axios';
@@ -9,8 +8,10 @@ import BackToTop from "@/components/BackToTop.vue";
 import Loading from "@/components/Loading.vue";
 import LabeledAbst from "@/components/LabeledAbst.vue";
 import ExplainLabel from "@/components/ExplainLabel.vue";
+import { useFiltersStore } from "@/stores/filters";
 
 const route = useRoute()
+const filterStore = useFiltersStore();
 
 // 検索フォームに入力された文字列を取得する
 const inputText = ref(route.query.queryText as string);
@@ -52,11 +53,12 @@ async function getPaperList() {
     console.log(`getPaperList(): ${inputText.value}`);
     const path = 'http://localhost:5050/search';
     const params = {
-        query: inputText.value
+        query: inputText.value,
+        event: filterStore.currentEventFilter,
+        year: filterStore.currentYearFilter,
     };
     try {
         const responce = await axios.post(path, params);
-        console.log(responce.data);
         paperList.value = responce.data.paperList;
         labeledAbst.value = responce.data.labeledAbst;
         // TODO: Piniaデータストアに格納
@@ -75,10 +77,11 @@ async function getPaperList() {
         // await new Promise(resolve => setTimeout(resolve, 1000))
         isLoading.value = false;
 
-        for (let i = 0; i < paperList.value.length; ++i) {
-            console.log(paperList.value[i]);
-        }
-        console.log(paperList.value[0].labeledAbst);
+        // debug
+        // for (let i = 0; i < paperList.value.length; ++i) {
+        //     console.log(paperList.value[i]);
+        // }
+        // console.log(paperList.value[0].labeledAbst);
 
     } catch (error) {
         console.log(error);
@@ -86,10 +89,6 @@ async function getPaperList() {
     }
 }
 // console.log(`asyncの外: ${paperList.value.length}`)
-
-// const linkClick = ():void => {
-//     router.push('/paperDetail');   
-// };
 
 /**
  * @description 論文の概要を全文表示する
@@ -121,11 +120,14 @@ const downloadJSON = () => {
     a.remove();
 };
 
+// const linkClick = ():void => {
+//     router.push('/paperDetail');   
+// };
+
 </script>
 
 
 <template>
-    
     <div class="flex gap-2">
         <!-- Left Section: Search form-->
         <div class="flex-1 flex flex-col gap-2 w-1/2">

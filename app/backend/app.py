@@ -39,6 +39,10 @@ def searchPaper():
     # postで渡された検索クエリを受け取る
     query = request.get_json()['query']
 
+    # 検索対象の絞り込み
+    searchYear = request.get_json()['year']
+    searchEvent = request.get_json()['event']
+
     if debug:
         # ダミーデータ
         with open('paperRecom/dammyPaperList.json') as f:
@@ -59,7 +63,7 @@ def searchPaper():
 
     # ログを出力
     if not debug:
-        logging(query, paperList)
+        logging(query, searchEvent, searchYear, paperList)
 
     # print(response[:10])
     return jsonify(response)
@@ -80,9 +84,19 @@ def classifyAbstract():
     
     return jsonify(labeledAbst)
 
-def logging(query, response, logDir='log/'):
+@app.route('/getSearchCond', methods=['POST'])
+def getSearchCond():
+    condition = {
+        "ACL": [2022, 2023],
+        "NACCL": [2021, 2022]
+    } 
+    return jsonify(condition)
+
+def logging(query, event, year, response, logDir='log/'):
     logDict = {
         'query': query,
+        'event': event,
+        'year': year,
         'response': response
     }
     outputPath = logDir + datetime.datetime.now().strftime('%Y%m%d%H%M%S') + '.json'

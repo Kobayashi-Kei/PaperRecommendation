@@ -7,3 +7,7 @@ export type labelScoreOfSimilarity = {
     result: string
     other: string
 };
+
+export type eventYearList = {
+    [key: string]: string[];
+}
