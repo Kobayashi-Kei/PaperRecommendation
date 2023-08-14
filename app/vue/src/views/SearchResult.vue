@@ -37,6 +37,7 @@ const paperList = ref(paperListInit);
 const isLoading = ref(true);
 const isHighlightLabel = ref(true);
 const labeledAbst = ref([] as abstLabelPair[]);
+const isDisplayQueryLabeledAbst = ref(false);
 
 getPaperList();
 
@@ -135,7 +136,7 @@ const downloadJSON = () => {
         </div>
         <!-- Right Section: Output -->
         <div class="flex-1 w-1/2 bg-gray-50 border rounded p-3">
-            <LabeledAbst v-bind:labeledAbst="labeledAbst"/>
+            <LabeledAbst v-if="labeledAbst.length > 0" v-bind:labeledAbst="labeledAbst" v-bind:is-limited-length="true"/>
         </div>
     </div>
 
@@ -182,7 +183,7 @@ const downloadJSON = () => {
                             <p class="mt-2 text-gray-600">{{ paper.abst }}</p>
                         </template>
                         <template v-else >
-                            <LabeledAbst v-bind:labeledAbst="paper.labeledAbst"/>
+                            <LabeledAbst v-bind:labeledAbst="paper.labeledAbst" v-bind:is-limited-length="false"/>
                         </template>
                     </div>
                     <p class="mt-3 text-gray-600">Author: {{ paper.author }}</p>

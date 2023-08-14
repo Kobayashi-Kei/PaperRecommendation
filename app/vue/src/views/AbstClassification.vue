@@ -73,7 +73,7 @@ const onClickClassificationButton = (): void => {
     </div>
     <!-- Output Section -->
     <div class="flex-1 bg-gray-50 border rounded p-3">
-        <LabeledAbst v-bind:labeledAbst="labeledAbst" />
+        <LabeledAbst v-bind:labeledAbst="labeledAbst"  v-bind:is-limited-length="false"/>
     </div>
 </div>
 
