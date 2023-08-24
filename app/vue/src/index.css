@@ -7,7 +7,7 @@
     The following is label styles for the abstract.
 */
 .label {
-    text-decoration: underline;
+    text-decoration: underline 2px;
 }
 
 .bg {
