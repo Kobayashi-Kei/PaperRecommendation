@@ -18,7 +18,8 @@ const placeholder = "Abstract ..."
 async function getAbstClassification() {
     isLoading.value = true
     console.log(`getAbstClassification(): ${inputAbst.value}`);
-    const path = 'http://localhost:5050/classify';
+    const path = `http://${settings.ip_address}:${settings.port}/classify`;
+    
     const params = {
         abst: inputAbst.value
     };

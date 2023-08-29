@@ -53,7 +53,7 @@ export const useFiltersStore = defineStore({
     },
     
     async getSearchCond() {
-        const path = 'http://localhost:5050/getSearchCond';
+        const path = `http://${settings.ip_address}:${settings.port}/getSearchCond`;
         try {
           const response = await axios.post(path);
           const eventYears: eventYearList = { 'all': [] };

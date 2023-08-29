@@ -11,8 +11,7 @@ const inputText = ref("InputText");
 const paperList = ref({});
 
 const getPaperList = (): void => {
-    // const path = 'http://localhost:5050/search/'+  inputText.value;
-    const path = 'http://localhost:5050/search';
+    const path = `http://${settings.ip_address}:${settings.port}/search`;
     const params = {
         text: inputText.value
     };

@@ -9,6 +9,7 @@ import Loading from "@/components/Loading.vue";
 import LabeledAbst from "@/components/LabeledAbst.vue";
 import ExplainLabel from "@/components/ExplainLabel.vue";
 import { useFiltersStore } from "@/stores/filters";
+import { settings } from "@/settings";
 
 const route = useRoute()
 const filterStore = useFiltersStore();
@@ -52,7 +53,7 @@ watch(route, () => {
 async function getPaperList() {
     isLoading.value = true
     console.log(`getPaperList(): ${inputText.value}`);
-    const path = 'http://localhost:5050/search';
+    const path = `http://${settings.ip_address}:${settings.port}/search`;
     const params = {
         query: inputText.value,
         event: filterStore.currentEventFilter,
