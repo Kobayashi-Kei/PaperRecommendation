@@ -40,6 +40,9 @@ make shell-vue
 cd vue
 # vueサーバー起動
 npm run dev
+
+# errorが出たら
+npm update
 ```
 
 2. ブラウザからアクセス
