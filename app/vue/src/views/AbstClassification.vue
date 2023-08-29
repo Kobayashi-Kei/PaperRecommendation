@@ -5,6 +5,7 @@ import axios from 'axios';
 import Loading from "@/components/Loading.vue";
 import LabeledAbst from "@/components/LabeledAbst.vue";
 import ExplainLabel from "@/components/ExplainLabel.vue";
+import { settings } from "@/settings";
 
 const inputAbst = ref("");
 const labeledAbstInit: abstLabelPair[] = []; 
