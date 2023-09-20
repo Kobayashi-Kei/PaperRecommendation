@@ -13,7 +13,8 @@ import json, datetime
 app = Flask(__name__)
 
 app.config.from_object(__name__)
-app.json.sort_keys = False
+# app.json.sort_keys = False # flask 2.3 以降
+app.config['JSON_SORT_KEYS'] = False
 
 CORS(app)
 debug = True

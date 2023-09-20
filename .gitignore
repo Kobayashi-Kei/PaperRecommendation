@@ -110,3 +110,4 @@ dist
 nohup.out
 .vscode
 app/backend/log/*
+app/vue/src/settings.ts

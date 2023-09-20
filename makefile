@@ -20,4 +20,4 @@ shell-vue:
 
 .PHONY: shell-flask
 shell-flask:
-	docker-compose exec flask bash
+	docker-compose exec flask_api bash

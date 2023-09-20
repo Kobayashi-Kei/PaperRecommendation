@@ -1,16 +1,29 @@
 version: '3'
 
 services:
-  flask:
+  flask_api:
     build:
       context: .
-      dockerfile: Dockerfile_python
-    container_name: flask_container
+      dockerfile: Dockerfile_flask_api
+      args:
+        - HTTP_PROXY=${HTTP_PROXY}
+        - http_proxy=${http_proxy}
+        - HTTPS_PROXY=${HTTPS_PROXY}
+        - https_proxy=${https_proxy}
+        - FTP_PROXY=${FTP_PROXY}
+        - ftp_proxy=${ftp_proxy}
+    container_name: flask_api_container
     tty: true
     volumes: 
-      - ./app:/usr/src/app
+      - ./app:/app
     ports:
       - "5050:5000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu, utility, compute]
   vue:
     build:
       context: .
@@ -22,3 +35,27 @@ services:
       - ./app:/app
     ports:
       - "8080:8080"
+  # ssc:
+  #   container_name: ssc
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile_ssc
+  #     args:
+  #       - HTTP_PROXY=${HTTP_PROXY}
+  #       - http_proxy=${http_proxy}
+  #       - HTTPS_PROXY=${HTTPS_PROXY}
+  #       - https_proxy=${https_proxy}
+  #       - FTP_PROXY=${FTP_PROXY}
+  #       - ftp_proxy=${ftp_proxy}
+  #   ipc: host
+  #   volumes:
+  #      - ./app:/app
+  #   ports:
+  #     - "5060:5000"
+  #   tty: true
+  #   deploy:
+  #     resources:
+  #       reservations:
+  #         devices:
+  #           - driver: nvidia
+  #             capabilities: [ gpu, utility, compute ]
