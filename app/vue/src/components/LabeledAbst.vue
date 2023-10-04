@@ -11,20 +11,27 @@ const displayLabeledAbstInit: abstLabelPair[] = []
 const displayLabeledAbst = ref(displayLabeledAbstInit);
 const isDisplayFull = ref(false);
 
-if (props.isLimitedLength) {
+const updateDisplayLabeledAbst = (newVal: abstLabelPair[]) => {
+  if (props.isLimitedLength && !isDisplayFull.value) {
     const maxLength = 200;
     let lengthAbst = 0;
-    for (let i = 0; i < props.labeledAbst.length; i++) {
-        lengthAbst += props.labeledAbst[i][0].length;
-        displayLabeledAbst.value.push(props.labeledAbst[i]);
-        if (lengthAbst > maxLength) {
-            break;
-        }
+    let tempArr: abstLabelPair[] = [];
+    for (let i = 0; i < newVal.length; i++) {
+      lengthAbst += newVal[i][0].length;
+      tempArr.push(newVal[i]);
+      if (lengthAbst > maxLength) {
+        break;
+      }
     }
-    displayLabeledAbst.value.push([" ... ", ""]);
-} else {
-    displayLabeledAbst.value = props.labeledAbst;
-}
+    displayLabeledAbst.value = [...tempArr, [" ... ", ""]];
+  } else {
+    displayLabeledAbst.value = newVal;
+  }
+};
+
+watch(() => props.labeledAbst, (newVal) => {
+  updateDisplayLabeledAbst(newVal);
+}, { immediate: true });
 
 const displayFull = () => {
     displayLabeledAbst.value = props.labeledAbst;

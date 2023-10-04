@@ -25,8 +25,6 @@ async function getAbstClassification() {
         abst: inputAbst.value
     };
     try {
-        // なんか計算してる風に1秒遅延させる
-        await new Promise(resolve => setTimeout(resolve, 1000))
         const response = await axios.post(path, params);
         labeledAbst.value = response.data;
         isLoading.value = false;

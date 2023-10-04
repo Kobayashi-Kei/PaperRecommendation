@@ -9,6 +9,7 @@ from random import *
 from paperRecom import paperRecommendation_entire
 
 import json, datetime
+import abst_classify
 
 app = Flask(__name__)
 
@@ -17,7 +18,7 @@ app.config.from_object(__name__)
 app.config['JSON_SORT_KEYS'] = False
 
 CORS(app)
-debug = True
+debug = False
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
@@ -81,7 +82,8 @@ def classifyAbstract():
             labeledAbst = json.load(f)
         
     else:
-        labeledAbst = request.get_json()['labeledData']
+        input_abst = request.get_json()['abst']
+        labeledAbst = abst_classify.classify(input_abst)
     
     return jsonify(labeledAbst)
 
