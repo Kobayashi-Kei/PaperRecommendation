@@ -1,4 +1,4 @@
-const ip_address = '0.0.0.0';
+const ip_address = '172.21.65.47';
 const port = '5050';
 
 export const settings = {

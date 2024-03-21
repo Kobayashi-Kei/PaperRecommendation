@@ -47,3 +47,15 @@ npm update
 
 2. ブラウザからアクセス
    http://localhost:8080/
+
+
+### allennlpでエラーが出たら
+### If allennlp not found Error is occured, run below command
+error
+```
+ValueError: Cannot convert variable to bool: all
+```
+```
+cd /app/backend/sequential_sentence_classification
+pip3 install -r requirements.txt 
+```

@@ -16,6 +16,8 @@ services:
     tty: true
     volumes: 
       - ./app:/app
+      - ../docker_specter:/specter
+      - ../dataserver:/dataserver
     ports:
       - "5050:5000"
     deploy:

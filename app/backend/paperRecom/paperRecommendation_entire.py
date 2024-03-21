@@ -122,7 +122,7 @@ def recom(method, query):
             tokenizer = AutoTokenizer.from_pretrained('allenai/specter')
             model = AutoModel.from_pretrained('allenai/specter')
 
-        input = tokenizer(query, padding=True, truncation=True, return_tensors="pt", max_length=512)
+        input = tokenizer(query, padding="max_length", truncation=True, return_tensors="pt", max_length=512)
         output = model(**input).last_hidden_state[:, 0, :]
 
         simMatrix = calcSimMatrix(allPaperData, output)

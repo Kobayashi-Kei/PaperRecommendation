@@ -6,10 +6,11 @@ from flask import Flask, render_template, jsonify, request
 from flask_cors import CORS
 from random import *
 
-from paperRecom import paperRecommendation_entire
+from paperRecom import recommend
 
 import json, datetime
 import abst_classify
+
 
 app = Flask(__name__)
 
@@ -18,7 +19,7 @@ app.config.from_object(__name__)
 app.config['JSON_SORT_KEYS'] = False
 
 CORS(app)
-debug = False
+debug = True
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
@@ -53,19 +54,22 @@ def searchPaper():
             labeledAbst = json.load(f)
         
     else:
+        paperList, labeledAbst = recommend.recommend(query, searchYear, searchEvent, title='')
+        
         # 検索クエリで論文検索
-        method = "tf-idf"
-        paperList = paperRecommendation_entire.recom(method, query)
+        # method = "tf-idf"
+        # paperList = paperRecommendation_entire.recom(method, query)
         # labeledAbst = paperRecommendation_entire.labeling(method, query, paperList)
     
+    # 返す論文数は20に設定
     response = {
-        "paperList": paperList[:10],
+        "paperList": paperList[:20],
         "labeledAbst": labeledAbst
     }
 
     # ログを出力
     if not debug:
-        logging(query, searchEvent, searchYear, paperList)
+        logging(query, searchEvent, searchYear, paperList[:20])
 
     # print(response[:10])
     return jsonify(response)
@@ -90,8 +94,9 @@ def classifyAbstract():
 @app.route('/getSearchCond', methods=['POST'])
 def getSearchCond():
     condition = {
+        'axcell': [1],
         "ACL": [2022, 2023],
-        "NACCL": [2021, 2022]
+        "NACCL": [2021, 2022],
     } 
     return jsonify(condition)
 

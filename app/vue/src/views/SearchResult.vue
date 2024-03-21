@@ -44,6 +44,7 @@ getPaperList();
 
 watch(route, () => {
     inputText.value = route.query.queryText as string;
+    labeledAbst.value = [] as abstLabelPair[];
     getPaperList();
 })
 

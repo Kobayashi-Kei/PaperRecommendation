@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import axios from "axios";
 import type { eventYearList } from '@/type';
+import { settings } from "@/settings";
 
 export const useFiltersStore = defineStore({
   id: 'filters',

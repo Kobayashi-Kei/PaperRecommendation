@@ -3,18 +3,21 @@ import subprocess
 import nltk
 import os
 
+label_dict = {
+    'background_label': 'bg',
+    'objective_label': 'obj',
+    'method_label': 'method',
+    'result_label': 'res',
+    'other_label': 'other',
+}
+
+
+
 def read_txt_and_convert_to_dict(file_path):
     with open(file_path, 'r') as f:
         lines = f.readlines()
 
     data_list = []
-    label_dict = {
-        'background_label' : 'bg',
-        'objective_label': 'obj',
-        'method_label' : 'method',
-        'result_label' : 'res',
-        'other_label': 'other',
-    }
     for line in lines:
         # 改行文字の除去とPythonのリストに変換
         parsed_line = eval(line.strip())
@@ -26,6 +29,20 @@ def read_txt_and_convert_to_dict(file_path):
             data_list.append(entry)
 
     return data_list
+
+def abst_label_pair_to_label_dict(abst_label_pair):
+    label_dict = {
+        'bg' : '',
+        'obj': '',
+        'method': '',
+        'res': '',
+        'other': '',
+    }
+
+    for sentence, label in abst_label_pair:
+        label_dict[label] = sentence
+        
+    return label_dict
 
 def classify(abstract):
     dir_path = './sequential_sentence_classification/'
