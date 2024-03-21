@@ -27,7 +27,7 @@ make up
 make shell-flask
 
 [コンテナ側(flask)]
-cd app/backend
+cd backend
 # flaskサーバー起動（ただし，APIしか用意していないため，ブラウザからはAPIしか叩けない）
 python3 app.py
 
@@ -37,7 +37,7 @@ cd paper_recommendation
 make shell-vue
 
 [コンテナ側(vue)]
-cd app/vue
+cd vue
 # vueサーバー起動
 npm run dev
 
